@@ -1,0 +1,13 @@
+@mixin fade-in {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-out;
+}
+
+@mixin fade-out($position) {
+  position: $position;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.4s ease-in;
+}

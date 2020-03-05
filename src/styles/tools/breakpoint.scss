@@ -1,0 +1,62 @@
+$breakpoints: (
+  xsmall: 0,
+  small: 375px,
+  xmedium: 640px,
+  medium: 768px,
+  large: 1024px,
+  xlarge: 1366px,
+) !default;
+
+@mixin breakpoint($query) {
+  @if (type-of($query) != 'string' and type-of($query) != 'list') {
+    @warn "breakpoint mixin only accepts a string or a list, `#{$query}` given.";
+  }
+
+  $bp: nth($query, 1);
+  $dir: if(length($query) > 1, nth($query, 2), up);
+
+  @if not map-has-key($breakpoints, $bp) {
+    @warn "breakpoint `#{$bp}` is not supported `small` is used instead. Available breakpoints: #{map-keys($breakpoints)}.";
+    $bp: small;
+  }
+  @if not ($dir == 'up' or $dir == 'down' or $dir == 'down-inc' or $dir == 'only') {
+    @warn "breakpoint direction `#{$dir}` is not supported `up` is used instead. Available breakpoints directions: up, down, only.";
+    $dir: up;
+  }
+
+  $mqs: 'screen';
+  $bpsl: length($breakpoints);
+  $bpi: index(map-keys($breakpoints), $bp);
+  $nbp: if($bpi + 1 <= $bpsl, $bpi + 1, null);
+  $pbp: if($bpi > 1, $bpi - 1, null);
+
+  $bpv: map-get($breakpoints, $bp);
+
+  @if ($dir == 'up') {
+    @if (strip-unit($bpv) > 0) {
+      $mqs: 'screen and (min-width: #{strip-unit($bpv)}px)';
+    }
+  }
+  @if ($dir == 'down') {
+    @if ($nbp) {
+      $nbpv: map-get($breakpoints, nth(map-keys($breakpoints), $nbp));
+      $mqs: 'screen and (max-width: #{strip-unit($nbpv - 1)}px)';
+    }
+  }
+  @if ($dir == 'down-inc') {
+    @if (strip-unit($bpv) > 0) {
+      $mqs: 'screen and (max-width: #{strip-unit($bpv)}px)';
+    }
+  }
+  @if ($dir == 'only') {
+    @if (strip-unit($bpv) > 0) {
+      $mqs: $mqs + ' and (min-width: #{strip-unit($bpv)}px)';
+    }
+    @if ($nbp) {
+      $nbpv: map-get($breakpoints, nth(map-keys($breakpoints), $nbp));
+      $mqs: $mqs + ' and (max-width: #{strip-unit($nbpv - 1)}px)';
+    }
+  }
+
+  @media #{$mqs} { @content; }
+}

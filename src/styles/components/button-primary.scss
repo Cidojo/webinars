@@ -1,0 +1,29 @@
+.button-primary {
+  @extend %reset-button;
+
+  padding: 12px 20px;
+  color: #333;
+  background-color: #fff;
+  border-radius: 6px;
+  transition: background-color 0.2s linear, box-shadow 0.15s linear;
+  outline: none;
+
+  &:active {
+    box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  &:not(&--green) {
+    &:hover {
+      background-color: $color-active-grey;
+    }
+  }
+
+  &--green {
+    color: #fff;
+    background-color: $color-primary-green;
+
+    &:hover {
+      background-color: $color-active-green;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+env:
+  es6: true
+  browser: true
+  commonjs: true
+  jest: true
+
+extends: ['plugin:react/recommended', 'standard']
+
+parser: 'babel-eslint'
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+  ecmaVersion: 9
+  sourceType: module
+
+plugins: ['react']
+
+settings:
+  react:
+    version: '16'

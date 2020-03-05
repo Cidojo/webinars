@@ -1,0 +1,47 @@
+$body-font-family: 'Ubuntu', Helvetica, sans-serif;
+$body-font-size: 16px;
+$body-line-height: 24px;
+
+%reset-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+%reset-button {
+  display: block;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+%visually-hidden {
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+}
+
+%container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 55px;
+}
+
+body {
+  box-sizing: border-box;
+  font-size: $body-font-size;
+  line-height: $body-line-height;
+  font-family: $body-font-family;
+}
+
+* > * {
+  box-sizing: inherit;
+}

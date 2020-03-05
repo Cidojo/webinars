@@ -1,0 +1,29 @@
+.pagination {
+  margin-bottom: 30px;
+
+  ul {
+    @extend %reset-list;
+    @extend %container;
+
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.pagination__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin: 6px;
+  color: $color-primary-blue;
+  background-color: $color-brighter-grey;
+
+  &--active {
+    color: #fff;
+    background-color: $color-primary-blue;
+  }
+}
