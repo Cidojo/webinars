@@ -59,3 +59,14 @@
   font-weight: 500;
   color: #424242;
 }
+
+@include breakpoint(('xmedium', 'down')) {
+  .modal {
+    padding: 0;
+  }
+
+  .modal__inner {
+    padding: 20px;
+    border-radius: 0;
+  }
+}

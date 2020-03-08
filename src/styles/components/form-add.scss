@@ -5,12 +5,16 @@
 .form-add__file {
   position: relative;
   width: 100%;
-  height: 160px;
+  height: 198px;
   border: 1px solid #DEE3E5;
   color: $color-primary-blue;
   border-radius: 5px;
   background-color: #E4ECF1;
   overflow: hidden;
+
+  &.highlight {
+    border: 5px dashed $color-primary-blue;
+  }
 
   &:hover {
     border-color: $color-primary-blue;
@@ -39,7 +43,7 @@
     }
 
     input[type="file"] {
-      display: none;
+      @extend %visually-hidden;
     }
 
     svg.icon {
@@ -70,7 +74,38 @@
   }
 
   button {
+    @extend %reset-button;
+
+    z-index: 10;
+    position: absolute;
+    top: 7px;
+    right: 7px;
     display: none;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.8);
+    outline: none;
+
+    &.js-shown {
+      display: flex;
+    }
+
+    svg.icon {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+
+    &:hover {
+      background-color: rgba(237, 45, 45, 0.8);
+    }
+
+    &:active {
+      background-color: rgba(208, 0, 0, 0.8);
+    }
   }
 
   &--file-in {

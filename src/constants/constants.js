@@ -9,7 +9,14 @@ const Url = {
   WEBINARS: `/webinars`
 };
 
+const GRID_LAYOUT = [
+  [1, 1, 1],
+  [1, 2, 0],
+  [1, 1, 1]
+];
+
 export {
+  GRID_LAYOUT,
   MAX_CATALOG_CARDS,
   MAX_RELATED_CARDS_COUNT,
   SHOW_MORE_STEP,

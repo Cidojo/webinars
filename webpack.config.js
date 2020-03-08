@@ -28,11 +28,13 @@ const commonConfig = merge([
       path: path.join(__dirname, `public`)
     },
     devServer: {
+      disableHostCheck: true,
+      host: '0.0.0.0', // to access from mobile
+      port: 3000,
       historyApiFallback: true,
       contentBase: path.join(__dirname, `public`),
       compress: false,
-      open: true,
-      port: 3000,
+      open: true
     },
     module: {
       rules: [

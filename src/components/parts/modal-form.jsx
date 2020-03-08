@@ -1,5 +1,11 @@
 import React from 'react';
 
+const ClassNames = {
+  HIGHLIGHT: 'highlight',
+  IMG_SHOWN: 'js-shown',
+  INVALID_FIELD: 'js-invalid'
+};
+
 const ModalForm = (props) => {
   const {
     onCloseModal,
@@ -11,6 +17,11 @@ const ModalForm = (props) => {
   } = props;
 
   const imgRef = React.createRef();
+  const fileInputRef = React.createRef();
+
+  const handleFormSubmit = (e) => {
+     onFormSubmit(e);
+  };
 
   const handleTitleInput = (e) => {
     onTitleInput(e.currentTarget.value)
@@ -20,10 +31,10 @@ const ModalForm = (props) => {
     onDescriptionInput(e.currentTarget.value)
   };
 
-  const handleImgUpload = (e) => {
-    const input = e.currentTarget;
+  const handleImageUpload = () => {
+    const input = fileInputRef.current;
 
-    if (input.files && input.files[0]) {
+    if (input && input.files && input.files[0]) {
       const reader = new FileReader();
 
       reader.onload = function (e) {
@@ -32,6 +43,47 @@ const ModalForm = (props) => {
       };
       reader.readAsDataURL(input.files[0]);
     }
+  };
+
+  const handleDragEnter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    e.currentTarget.classList.add(ClassNames.HIGHLIGHT);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    e.currentTarget.classList.add(ClassNames.HIGHLIGHT);
+  };
+
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    e.currentTarget.classList.remove(ClassNames.HIGHLIGHT);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    e.currentTarget.classList.remove(ClassNames.HIGHLIGHT);
+
+    const dt = e.dataTransfer;
+    const files = dt.files;
+
+    const input = fileInputRef.current;
+    input.files = files;
+
+    handleImageUpload();
+  };
+
+  const handleRemoveImg = () => {
+    fileInputRef.current.value = '';
+    onFileUpload(null);
   };
 
   return (
@@ -51,11 +103,17 @@ const ModalForm = (props) => {
           action='/webinars'
           method='post'
           encType='multipart/form-data'
-          onSubmit={onFormSubmit}
+          onSubmit={handleFormSubmit}
         >
-          <p className='form-add__file'>
+          <p
+            className='form-add__file'
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          >
             <img
-              className={hasFile ? 'js-shown' : ''}
+              className={hasFile ? ClassNames.IMG_SHOWN : ''}
               ref={imgRef}
             />
             <label htmlFor='form-add__file'>
@@ -63,7 +121,9 @@ const ModalForm = (props) => {
                 id='form-add__file'
                 type='file'
                 name='form-add__file'
-                onChange={handleImgUpload}
+                onChange={handleImageUpload}
+                ref={fileInputRef}
+                required
               />
               <small>
                 <svg className='icon'>
@@ -72,7 +132,11 @@ const ModalForm = (props) => {
               </small>
               <span>select an image file to upload or drag it here</span>
             </label>
-            <button type='button'>
+            <button
+              type='button'
+              className={hasFile ? ClassNames.IMG_SHOWN: ''}
+              onClick={handleRemoveImg}
+            >
               <svg className='icon'>
                 <use xlinkHref="#icon-bin" />
               </svg>
@@ -86,6 +150,7 @@ const ModalForm = (props) => {
               name='form-add__title'
               placeholder='Title'
               onInput={handleTitleInput}
+              required
             />
           </div>
           <div className='form-add__fieldset'>
@@ -95,6 +160,7 @@ const ModalForm = (props) => {
               rows='3'
               placeholder='Description'
               onInput={handleDescriptionInput}
+              required
             />
           </div>
           <div className='form-add__fieldset'>

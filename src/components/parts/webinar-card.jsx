@@ -1,23 +1,23 @@
 import * as React from 'react';
-
-const TILE_COLUMNS = 3;
-const GRID_COLUMNS = 12;
+import {Link} from 'react-router-dom';
 
 const WebinarCard = (props) => {
-  const {webinar} = props;
+  const {webinar, gridClassName} = props;
 
   return (
     <article
-      className={`tile${ webinar.grid > 1 ? ` col-${parseInt((GRID_COLUMNS / TILE_COLUMNS) * webinar.grid)}` : ''}`}
+      className={`tile ${gridClassName}`}
     >
-      <div className='tile__img-wrp'>
-        <img src={webinar.imgSrc} alt={webinar.imgDescription} />
-      </div>
-      <div className='tile__content'>
-        <h3>{webinar.title}</h3>
-        <p>{webinar.description}</p>
-        {webinar.tag ? <span>{webinar.tag}</span> : ''}
-      </div>
+      <Link to={`/webinars/${webinar.id}`}>
+        <div className='tile__img-wrp'>
+          <img src={webinar.imgSrc} alt={webinar.imgDescription} />
+        </div>
+        <div className='tile__content'>
+          <h3>{webinar.title}</h3>
+          <p>{webinar.description}</p>
+          {webinar.tag ? <span>{webinar.tag}</span> : ''}
+        </div>
+      </Link>
     </article>
   );
 };
@@ -31,7 +31,8 @@ WebinarCard.defaultProps = {
     imgDescription: '',
     tag: '',
     grid: 1
-  }
+  },
+  gridClassName: ''
 };
 
 export {WebinarCard};
