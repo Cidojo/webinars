@@ -1,90 +1,84 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {RemoveScroll} from 'react-remove-scroll'
+import {bindActionCreators} from 'redux';
 
-const TILE_COLUMNS = 3;
-const GRID_COLUMNS = 12;
+import {ModalForm} from './../parts/modal-form.jsx';
+import {WebinarCard} from './../parts/webinar-card.jsx';
+import {Header} from './../parts/header.jsx';
+import {Hero} from './../parts/hero.jsx';
+import {Pagination} from './../parts/pagination.jsx';
+import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
+import withFormData from './../../hocs/with-form-data/with-form-data.jsx';
+import Selectors from './../../selectors/selectors.js';
+
+import './../../assets/icons/icon-close.svg';
+import './../../assets/icons/icon-copy.svg';
+import './../../assets/icons/icon-bin.svg';
+import {WebinarsOperation} from "../../reducers/webinars-reducer/webinars-reducer";
+
+const ModalFormWrapped = withFormData(ModalForm);
 
 const HomePage = (props) => {
-  const {articles} = props;
+  const {webinars, active, onActiveChange, onSaveNew} = props;
+
+  const handleAddNewClick = () => {
+    onActiveChange(true);
+  };
+
+  const handleCloseModal = () => {
+    onActiveChange(null);
+  };
+
   return (
     <>
-      <header className='header'>
-        <div className='header__inner'>
-          <img className="header__logo" src='../../assets/img/logo.svg' alt='logo' />
-        </div>
-      </header>
-      <section className='hero'>
-        <div className='hero__inner'>
-          <section className='hero__description'>
-            <h1 className='hero__title'>Webinars</h1>
-            <small className='hero__text'>Here you can register and take part in educational webinars conducted by the best digital marketing experts.</small>
-            <button className='button-primary'>Add new</button>
-          </section>
-        </div>
-      </section>
+      <Header />
+      <Hero
+        onAddNewClick={handleAddNewClick}
+      />
       <section className="tiles">
         <div className='tiles__inner'>
-          {articles.map((article, i) => {
+          {webinars.map((webinar, i) => {
             return (
-              <article
-                className={`tile${ article.grid > 1 ? ` col-${parseInt((GRID_COLUMNS / TILE_COLUMNS) * article.grid)}` : ''}`}
-                key={`${article.id}_${i}`}
-              >
-                <div className='tile__img-wrp'>
-                  <img src={article.imgSrc} alt={article.imgDescription} />
-                </div>
-                <div className='tile__content'>
-                  <h3>{article.title}</h3>
-                  <p>{article.description}</p>
-                  {article.tag ? <span>{article.tag}</span> : ''}
-                </div>
-              </article>
-            )
+              <WebinarCard
+                key={`${webinar.id}_${i}`}
+                webinar={webinar}
+              />
+            );
           })}
         </div>
       </section>
-      <div className='pagination'>
-        <ul>
-          <li className='pagination__item pagination__item--active'>
-            <a href='#'>1</a>
-          </li>
-          <li className='pagination__item'>
-            <a href='#'>2</a>
-          </li>
-          <li className='pagination__item'>
-            <a href='#'>3</a>
-          </li>
-          <li className='pagination__item'>
-            <a href='#'>4</a>
-          </li>
-        </ul>
-      </div>
-
-      <div className='modal'>
-        <article className='modal__inner'>
-          <button className='modal__close'>
-            <span>Close modal window</span>
-          </button>
-          <h2 className='modal__title'>Add New</h2>
-          <form action='add-new'>
-            <p className='form-add__file'>
-              <input type='file' name='form-add__file' />
-            </p>
-            <div className='form-add__fieldset'>
-              <label htmlFor='form-add__title'>Title</label>
-              <input id='form-add__title' type='text' name='form-add__title' placeholder='Title' />
-            </div>
-            <div className='form-add__fieldset'>
-              <label htmlFor='form-add__description'>Description</label>
-              <textarea id='form-add__description' rows='3' placeholder='Description'></textarea>
-            </div>
-            <div className='form-add__fieldset'>
-              <button className='button-primary button-primary--green' type='submit'>Save</button>
-            </div>
-          </form>
-        </article>
-      </div>
+      <Pagination />
+      {active ?
+        <RemoveScroll className={`modal-wrp ${RemoveScroll.classNames.noScrollbarsClassName}`}>
+          <ModalFormWrapped
+            onCloseModal={handleCloseModal}
+            onSaveNew={onSaveNew}
+          />
+        </RemoveScroll>
+      : ''}
     </>
   );
 };
 
+HomePage.defaultProps = {
+  onActiveChange: () => {},
+  onSaveNew: () => {},
+  active: null,
+  webinars: []
+};
+
+const HomePageWrapped = withActiveItem(HomePage);
+
+const mapStateToProps = (state, ownProps) => {
+  return Object.assign({}, ownProps, {
+    webinars: Selectors.getWebinars(state)
+  });
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  onSaveNew: bindActionCreators(WebinarsOperation.saveNew, dispatch)
+});
+
 export {HomePage};
+export default connect(mapStateToProps, mapDispatchToProps)(HomePageWrapped);

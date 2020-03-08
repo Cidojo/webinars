@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 const info = require(`./package.json`);
 const parts = require('./webpack.parts');
@@ -69,7 +70,16 @@ const commonConfig = merge([
               }
             ]
           })
-        }],
+        }, {
+          test: /.*\.svg$/i,
+          include: path.resolve(__dirname, 'src/assets/icons'),
+          exclude: path.resolve(__dirname, 'src/assets/img'),
+          use: [
+            'svg-sprite-loader',
+            'svgo-loader'
+          ]
+        }
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -89,7 +99,8 @@ const commonConfig = merge([
           from: 'src/assets/img/',
           to: 'assets/img'
         }
-      ])
+      ]),
+      new SpriteLoaderPlugin()
     ],
     devtool: `source-map`
   }

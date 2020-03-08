@@ -1,29 +1,38 @@
-import AuthActionType from './../../actions/auth-actions/auth-actions.js';
-import {adaptUserData} from './../../utils/adapter.js';
+import WebinarsActionType from './../../actions/webinars-actions/webinars-actions.js';
 import {Url} from './../../constants/constants.js';
 
 const initialState = {
-  userData: {}
+  webinars: []
 };
 
 const ActionCreator = {
-  addWebinar: (webinar) => ({
-    type: WebinarsActionType.ADD_WEBINAR,
+  addNew: (webinar) => ({
+    type: WebinarsActionType.ADD_NEW,
     payload: webinar
   }),
-  getWebinars: () => ({
-    type: WebinarsActionType.GET_WEBINARS
+  setAll: (webinars) => ({
+    type: WebinarsActionType.SET_ALL,
+    payload: webinars
   })
 };
 
 const Operation = {
-  authorize: (authData) => (dispatch, _, api) => {
-    return api.post(Url.LOGIN, authData)
+  getAll: () => (dispatch, _, api) => {
+    return api.get(Url.WEBINARS)
+      .then((response) => {
+
+        if (response.data) {
+          dispatch(ActionCreator.setAll(response.data));
+        }
+        return response;
+      });
+  },
+  saveNew: (webinar) => (dispatch, _, api) => {
+    return api.post(Url.WEBINARS, webinar)
       .then((response) => {
         if (response.data) {
-          dispatch(ActionCreator.assignUser(adaptUserData(response.data)));
+          dispatch(ActionCreator.addNew(response.data));
         }
-
         return response;
       });
   }
@@ -31,16 +40,16 @@ const Operation = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case AuthActionType.ASSIGN_USER: return Object.assign({}, state, {
-      userData: action.payload
+    case WebinarsActionType.SET_ALL: return Object.assign({}, state, {
+      webinars: action.payload
     });
-    case AuthActionType.RESET_USER: return Object.assign({}, state, {
-      userData: initialState.userData
+    case WebinarsActionType.ADD_NEW: return Object.assign({}, state, {
+      webinars: [action.payload, ...state.webinars]
     });
   }
 
   return state;
 };
 
-export {ActionCreator as AuthActionCreator, Operation as AuthOperation, initialState as AuthInitialState};
+export {ActionCreator as WebinarsActionCreator, Operation as WebinarsOperation, initialState as WebinarsInitialState};
 export default reducer;

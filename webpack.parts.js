@@ -1,8 +1,12 @@
+const path = require(`path`);
+
 exports.loadImages = ({ options } = {}) => ({
   module: {
     rules: [
       {
         test: /^(?!icon).*\.(png|jpg|svg|webp)$/,
+        include: path.resolve(__dirname, 'src/assets/img'),
+        exclude: path.resolve(__dirname, 'src/assets/icons'),
         use: {
           loader: 'file-loader',
           options

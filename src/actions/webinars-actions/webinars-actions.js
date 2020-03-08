@@ -1,6 +1,6 @@
 const ActionType = {
-  ASSIGN_USER: `ASSIGN_USER`,
-  RESET_USER: `RESET_USER`
+  SET_ALL: `SET_ALL`,
+  ADD_NEW: `ADD_NEW`
 };
 
 export default ActionType;
