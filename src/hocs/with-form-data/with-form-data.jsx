@@ -51,7 +51,7 @@ const withFormData = (Component) => {
 
       const data = this.prepareData();
 
-      axios.post('http://localhost:5000/uploads', data, {
+      axios.post('/uploads', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

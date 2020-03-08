@@ -28,9 +28,7 @@ const commonConfig = merge([
       path: path.join(__dirname, `public`)
     },
     devServer: {
-      disableHostCheck: true,
-      host: '0.0.0.0', // to access from mobile
-      port: 3000,
+      port: process.env.PORT || 3000,
       historyApiFallback: true,
       contentBase: path.join(__dirname, `public`),
       compress: false,

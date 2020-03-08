@@ -351,9 +351,9 @@ template {
 
 .pagination ul{margin:0;padding:0;list-style:none}
 
-.button-primary,.modal__close,.form-add__file--file-in>button{display:block;padding:0;border:none;box-shadow:none;background-color:transparent;cursor:pointer}
+.button-primary,.modal__close,.form-add__file button,.form-add__file--file-in>button{display:block;padding:0;border:none;box-shadow:none;background-color:transparent;cursor:pointer}
 
-.modal__close>span{position:absolute !important;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px);padding:0 !important;border:0 !important;height:1px !important;width:1px !important;overflow:hidden}
+.modal__close>span,.form-add__file label input[type="file"]{position:absolute !important;clip:rect(1px 1px 1px 1px);clip:rect(1px, 1px, 1px, 1px);padding:0 !important;border:0 !important;height:1px !important;width:1px !important;overflow:hidden}
 
 .header__inner,.hero__inner,.tiles__inner,.pagination ul{width:100%;max-width:1300px;margin:0 auto;padding:0 55px}
 
@@ -364,6 +364,8 @@ body{box-sizing:border-box;font-size:16px;line-height:24px;font-family:"Ubuntu",
 svg.icon{flex:0 0 auto;width:100%;height:100%}
 
 h1,h2,h3,h4,h5,h6,p{margin:0}
+
+a{text-decoration:none}
 
 .button-primary{padding:12px 20px;color:#333;background-color:#fff;border-radius:6px;transition:background-color 0.2s linear, box-shadow 0.15s linear;outline:none}
 
@@ -378,6 +380,8 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .header{background-color:#2A2E32}
 
 .header__inner{display:flex;align-items:center;justify-content:center;padding-top:16.5px;padding-bottom:16.5px}
+
+.header__inner>a{display:flex}
 
 .header__logo{width:166px;height:17px}
 
@@ -395,17 +399,19 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 
 .tiles__inner{display:flex;flex-wrap:wrap;justify-content:flex-start;padding:50px 73px 20px}
 
-.tile{position:relative;width:calc(33.3333% - 40px);margin:20px;box-shadow:0 2px 15px rgba(0,0,0,0.1)}
+.tile{position:relative;width:calc(100% / 3 - 40px);margin:20px;box-shadow:0 2px 15px rgba(0,0,0,0.1)}
 
-.tile[class*="col-"]{display:flex;align-items:flex-end;width:calc(66.6666% - 40px);min-height:392px;padding-top:65px}
+.tile[class*="col-8"]{display:flex;align-items:flex-end;width:calc(2 * 100% / 3 - 40px);min-height:392px;padding-top:65px}
 
-.tile[class*="col-"] .tile__img-wrp{z-index:-1;position:absolute;top:0;left:0;bottom:0;right:0;height:auto}
+.tile[class*="col-8"] .tile__img-wrp{z-index:-1;position:absolute;top:0;left:0;bottom:0;right:0;height:auto}
 
-.tile[class*="col-"] .tile__content{padding-bottom:25px;color:#fff}
+.tile[class*="col-8"] .tile__content{padding-bottom:25px;color:#fff}
 
-.tile[class*="col-"] .tile__content span{bottom:auto;left:auto;top:30px;right:25px}
+.tile[class*="col-8"] .tile__content span{bottom:auto;left:auto;top:30px;right:25px}
 
-.tile:not([class*="col-"]){padding-bottom:50px}
+.tile[class*="col-8"]>a{width:100%;height:100%;display:flex;align-items:flex-end}
+
+.tile:not([class*="col-8"]){padding-bottom:50px}
 
 .tile__img-wrp{height:160px;overflow:hidden}
 
@@ -418,6 +424,10 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 .tile__content p{opacity:0.6}
 
 .tile__content span{position:absolute;bottom:30px;left:25px;display:block;padding:2px 7px;font-size:14px;line-height:1.5;color:#fff;background-color:#4FAE33;border-radius:12px}
+
+@media screen and (max-width: 1365px){.tile{width:calc(100% / 2 - 40px);margin:20px}.tile[class*="col-8"]{width:calc(2 * 100% / 2 - 40px)}.tiles__inner{padding:20px 20px 0}.tile__img-wrp{height:250px}}
+
+@media screen and (max-width: 767px){.tile{width:100%;margin:20px}.tile[class*="col-8"]{width:100%}.tiles__inner{padding:20px 0 0}.tile__img-wrp{height:250px}}
 
 .pagination{margin-bottom:30px}
 
@@ -445,9 +455,13 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 
 .modal__title{margin-bottom:30px;font-size:32px;line-height:38px;font-weight:500;color:#424242}
 
+@media screen and (max-width: 767px){.modal{padding:0}.modal__inner{padding:20px;border-radius:0}}
+
 .form{width:100%}
 
-.form-add__file{position:relative;width:100%;height:160px;border:1px solid #DEE3E5;color:#2B94E1;border-radius:5px;background-color:#E4ECF1;overflow:hidden}
+.form-add__file{position:relative;width:100%;height:198px;border:1px solid #DEE3E5;color:#2B94E1;border-radius:5px;background-color:#E4ECF1;overflow:hidden}
+
+.form-add__file.highlight{border:5px dashed #2B94E1}
 
 .form-add__file:hover{border-color:#2B94E1}
 
@@ -457,15 +471,21 @@ h1,h2,h3,h4,h5,h6,p{margin:0}
 
 .form-add__file label span{font-size:14px;line-height:1;text-align:center;cursor:pointer}
 
-.form-add__file label input[type="file"]{display:none}
-
 .form-add__file label svg.icon{width:44px;height:44px;margin:10px;fill:#2B94E1}
 
 .form-add__file img{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;-o-object-fit:cover;object-fit:cover;-o-object-position:center;object-position:center;display:none}
 
-.form-add__file img.js-shown{display:block;z-index:1}
+.form-add__file img.js-shown{background-color:#fff;display:block;z-index:1}
 
-.form-add__file button{display:none}
+.form-add__file button{z-index:10;position:absolute;top:7px;right:7px;display:none;justify-content:center;align-items:center;width:32px;height:32px;border-radius:4px;background-color:rgba(0,0,0,0.8);outline:none}
+
+.form-add__file button.js-shown{display:flex}
+
+.form-add__file button svg.icon{width:22px;height:22px;fill:#fff}
+
+.form-add__file button:hover{background-color:rgba(237,45,45,0.8)}
+
+.form-add__file button:active{background-color:rgba(208,0,0,0.8)}
 
 .form-add__file--file-in>button{position:absolute;display:flex;align-items:center;justify-content:center;width:34px;height:34px;top:5px;right:5px;border-radius:5px;background-color:rgba(0,0,0,0.8);outline:none}
 
