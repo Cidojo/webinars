@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Header component without errors 1`] = `
+<header
+  className="header"
+>
+  <div
+    className="header__inner"
+  >
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <img
+        alt="logo"
+        className="header__logo"
+        src="../../assets/img/logo.svg"
+      />
+    </a>
+  </div>
+</header>
+`;

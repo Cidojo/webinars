@@ -10,7 +10,7 @@ const Pagination = (props) => {
         {[...Array(pages)].map((page, i) => (
           <li
             key={i}
-            className={currentPage === i + 1 ? `pagination__item pagination__item--active` : 'pagination__item'}
+            className={currentPage === i + 1 ? `pagination__item pagination__item--active` : `pagination__item`}
           >
             <Link to={`/?page=${i + 1}`}>{i + 1}</Link>
           </li>
@@ -18,6 +18,11 @@ const Pagination = (props) => {
       </ul>
     </div>
   );
+};
+
+Pagination.defaultProps = {
+  pages: 1,
+  currentPage: 1
 };
 
 export {Pagination};

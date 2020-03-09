@@ -6,8 +6,8 @@ const withFormData = (Component) => {
       super(props);
 
       this.state = {
-        title: '',
-        description: '',
+        title: ``,
+        description: ``,
         file: null
       };
 
@@ -22,22 +22,22 @@ const withFormData = (Component) => {
     handleTitleInput(val) {
       this.setState({
         title: val
-      })
+      });
     }
 
     handleDescriptionInput(val) {
       this.setState({
         description: val
-      })
+      });
     }
 
     handleFileUpload(file) {
       this.setState({
-        file: file
-      })
+        file
+      });
     }
 
-    prepareData () {
+    prepareData() {
       const formData = new FormData();
       Object.keys(this.state).forEach((key) => {
         formData.append(key, this.state[key]);
@@ -51,18 +51,18 @@ const withFormData = (Component) => {
 
       const data = this.prepareData();
 
-      axios.post('/uploads', data, {
+      axios.post(`/uploads`, data, {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          'Content-Type': `multipart/form-data`
         }
       })
         .then(() => {
           this.addNewWebinar();
-        })
-    };
+        });
+    }
 
     get fileName() {
-      return this.state.file.name.split(' ').join('-');
+      return this.state.file.name.split(` `).join(`-`);
     }
 
     addNewWebinar() {
@@ -71,7 +71,7 @@ const withFormData = (Component) => {
         description: this.state.description,
         imgSrc: `uploads/${this.fileName}`,
         imgDescription: this.state.file.name,
-        tag: '',
+        tag: ``,
         grid: 1
       };
 

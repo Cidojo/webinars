@@ -15,7 +15,7 @@ const WebinarCard = (props) => {
         <div className='tile__content'>
           <h3>{webinar.title}</h3>
           <p>{webinar.description}</p>
-          {webinar.tag ? <span>{webinar.tag}</span> : ''}
+          {webinar.tag ? <span>{webinar.tag}</span> : ``}
         </div>
       </Link>
     </article>
@@ -25,14 +25,13 @@ const WebinarCard = (props) => {
 WebinarCard.defaultProps = {
   webinar: {
     id: 0,
-    title: '',
-    description: '',
-    imgSrc: '',
-    imgDescription: '',
-    tag: '',
-    grid: 1
+    title: ``,
+    description: ``,
+    imgSrc: ``,
+    imgDescription: ``,
+    tag: ``
   },
-  gridClassName: ''
+  gridClassName: ``
 };
 
 export {WebinarCard};

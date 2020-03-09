@@ -4,10 +4,11 @@
 
 (won't work without server up)
 
-
 ``` yarn build ``` - to build client
 
 ``` yarn start ``` - to run express from public folder (localhost:5000)
+
+``` jest ``` - to run couple tests
 
 *Author*
 

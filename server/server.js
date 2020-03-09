@@ -11,6 +11,10 @@ const server = http.Server(app);
 const publicPath = path.join(__dirname, `./../public`);
 const port = process.env.PORT || 5000;
 
+if (!fs.existsSync('./public/uploads')) {
+  fs.mkdirSync(`./public/uploads`);
+}
+
 const DataController = require('./data/data-controller.js');
 
 const dataController = new DataController('./server/data/webinars-db.json');
@@ -37,12 +41,11 @@ const formidableSettings = {
     event: 'fileBegin',
     action: function (req, res, next, name, file) {
       const [fileName, fileExt] = file.name.split('.');
+
       file.path = path.join(__dirname, `${fileUploadDir}/${fileName.split(' ').join('-')}.${fileExt}`);
     }
   }]
 };
-
-// const webinars = require('./data/webinars').all;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

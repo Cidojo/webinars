@@ -1,9 +1,9 @@
 import React from 'react';
 
 const ClassNames = {
-  HIGHLIGHT: 'highlight',
-  IMG_SHOWN: 'js-shown',
-  INVALID_FIELD: 'js-invalid'
+  HIGHLIGHT: `highlight`,
+  IMG_SHOWN: `js-shown`,
+  INVALID_FIELD: `js-invalid`
 };
 
 const ModalForm = (props) => {
@@ -20,22 +20,22 @@ const ModalForm = (props) => {
   const fileInputRef = React.createRef();
 
   const handleFormSubmit = (e) => {
-     onFormSubmit(e);
+    onFormSubmit(e);
   };
 
   const handleTitleInput = (e) => {
-    onTitleInput(e.currentTarget.value)
+    onTitleInput(e.currentTarget.value);
   };
 
   const handleDescriptionInput = (e) => {
-    onDescriptionInput(e.currentTarget.value)
+    onDescriptionInput(e.currentTarget.value);
   };
 
   const saveFile = (file) => {
     const reader = new FileReader();
 
     reader.onload = function (e) {
-      imgRef.current && imgRef.current.setAttribute('src', e.currentTarget.result);
+      imgRef.current && imgRef.current.setAttribute(`src`, e.currentTarget.result);
       onFileUpload(file);
     };
     reader.readAsDataURL(file);
@@ -85,8 +85,8 @@ const ModalForm = (props) => {
   };
 
   const handleRemoveImg = () => {
-    fileInputRef.current.value = '';
-    imgRef.current && imgRef.current.removeAttribute('src');
+    fileInputRef.current.value = ``;
+    imgRef.current && imgRef.current.removeAttribute(`src`);
     onFileUpload(null);
   };
 
@@ -117,7 +117,7 @@ const ModalForm = (props) => {
             onDrop={handleDrop}
           >
             <img
-              className={hasFile ? ClassNames.IMG_SHOWN : ''}
+              className={hasFile ? ClassNames.IMG_SHOWN : ``}
               ref={imgRef}
             />
             <label htmlFor='form-add__file'>
@@ -138,7 +138,7 @@ const ModalForm = (props) => {
             </label>
             <button
               type='button'
-              className={hasFile ? ClassNames.IMG_SHOWN: ''}
+              className={hasFile ? ClassNames.IMG_SHOWN : ``}
               onClick={handleRemoveImg}
             >
               <svg className='icon'>
@@ -185,4 +185,4 @@ ModalForm.defaultProps = {
   onCloseModal: () => {}
 };
 
-export { ModalForm };
+export {ModalForm};

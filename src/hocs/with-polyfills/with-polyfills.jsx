@@ -3,17 +3,17 @@ import objectFitImages from 'object-fit-images';
 
 const withPolyfills = (Component) => {
   class WithPolyfills extends React.PureComponent {
-    componentDidMount () {
+    componentDidMount() {
       objectFitImages();
-    };
+    }
 
-    render () {
+    render() {
       return (
         <Component
           {...this.props}
         />
       );
-    };
+    }
   }
 
   return WithPolyfills;

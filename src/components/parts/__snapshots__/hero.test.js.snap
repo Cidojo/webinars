@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render Hero with add button component without errors 1`] = `
+<section
+  className="hero"
+>
+  <div
+    className="hero__inner"
+  >
+    <section
+      className="hero__description"
+    >
+      <h1
+        className="hero__title"
+      >
+        Webinars
+      </h1>
+      <small
+        className="hero__text"
+      >
+        Here you can register and take part in educational webinars conducted by the best digital marketing experts.
+      </small>
+      <button
+        className="button-primary"
+        onClick={[Function]}
+      >
+        Add new
+      </button>
+    </section>
+  </div>
+</section>
+`;
+
+exports[`should render Hero without add button component without errors 1`] = `
+<section
+  className="hero"
+>
+  <div
+    className="hero__inner"
+  >
+    <section
+      className="hero__description"
+    >
+      <h1
+        className="hero__title"
+      >
+        Webinars
+      </h1>
+      <small
+        className="hero__text"
+      >
+        Here you can register and take part in educational webinars conducted by the best digital marketing experts.
+      </small>
+    </section>
+  </div>
+</section>
+`;

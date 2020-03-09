@@ -7,7 +7,7 @@ const restoreWebinarsFromStorage = () => {
   try {
     const webinarsCached = window.localStorage.getItem(WEBINARS_STORAGE_KEY);
 
-    return webinarsCached !== 'undefined' ? JSON.parse(webinarsCached) : WebinarsInitialState.webinars;
+    return webinarsCached !== `undefined` ? JSON.parse(webinarsCached) : WebinarsInitialState.webinars;
   } catch (err) {
     throw new Error(`${err} on restoreWebinars`);
   }

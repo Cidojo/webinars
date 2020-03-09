@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {RemoveScroll} from 'react-remove-scroll'
+import {RemoveScroll} from 'react-remove-scroll';
 import {bindActionCreators} from 'redux';
 import qs from 'qs';
 
@@ -28,8 +28,8 @@ const getGrid = () => {
   const GRID_COLUMNS = 12;
 
   return GRID_LAYOUT
-    .join(',')
-    .split(',')
+    .join(`,`)
+    .split(`,`)
     .filter((cell) => cell > 0)
     .map((col) => `col-${Math.floor((GRID_COLUMNS / TILE_COLUMNS) * col)}`);
 };
@@ -39,7 +39,7 @@ const gridSettings = getGrid();
 const HomePage = (props) => {
   const {webinars, active, onActiveChange, onSaveNew} = props;
 
-  const currentPage = +qs.parse(props.location.search, { ignoreQueryPrefix: true }).page || 1;
+  const currentPage = +qs.parse(props.location.search, {ignoreQueryPrefix: true}).page || 1;
 
   const handleAddNewClick = () => {
     onActiveChange(true);
@@ -51,7 +51,7 @@ const HomePage = (props) => {
 
   const handleSaveNew = (model) => {
     onSaveNew(model);
-    handleCloseModal()
+    handleCloseModal();
   };
 
   return (
@@ -86,7 +86,7 @@ const HomePage = (props) => {
             onSaveNew={handleSaveNew}
           />
         </RemoveScroll>
-      : ''}
+        : ``}
     </>
   );
 };
