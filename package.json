@@ -5,12 +5,9 @@
   "homepage": "https://cidojo.github.io/",
   "description": "webinar community",
   "scripts": {
-    "eslint": "eslint --ext .jsx --ext .js src/",
-    "test": "npm run eslint && jest",
-    "build": "webpack --mode production",
-    "start": "webpack-dev-server",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d public"
+    "build": "webpack --mode production && cd server && npm install",
+    "start": "cd server && npm run start",
+    "startDev": "webpack-dev-server"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
@@ -49,7 +46,8 @@
     "webpack-merge": "^4.2.2"
   },
   "engines": {
-    "node": "10"
+    "node": "10.15.1",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.3",
