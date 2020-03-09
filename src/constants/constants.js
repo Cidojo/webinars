@@ -5,7 +5,7 @@ const SMALL_MOVIE_CARD_MOUSE_ENTER_DELAY = 1000;
 const DEFAULT_GENRE = `All genres`;
 
 const Url = {
-  BASE: `http://localhost:5000`,
+  BASE: ``,
   WEBINARS: `/webinars`
 };
 

@@ -1,23 +1,5 @@
 [
   {
-    "id": 10,
-    "title": "asdas",
-    "description": "sadas",
-    "imgSrc": "uploads/github__space.jpg",
-    "imgDescription": "github__space.jpg",
-    "tag": "",
-    "grid": 1
-  },
-  {
-    "id": 9,
-    "title": "SpaceMan",
-    "description": "Goes Down",
-    "imgSrc": "uploads/github__space.jpg",
-    "imgDescription": "github__space.jpg",
-    "tag": "",
-    "grid": 1
-  },
-  {
     "id": 1,
     "title": "HTTPS & SSL Does Not Mean You Have a Secure Website",
     "description": "Having an SSL certificate does not mean you have a secure website, and with the new European GDPR regulations",
