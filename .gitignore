@@ -11,5 +11,8 @@ node_modules/
 yarn.lock
 package-lock.json
 
-public/*
-!public/uploads
+public/assets
+public/*.js
+public/*.map
+public/*.html
+public/*.css
