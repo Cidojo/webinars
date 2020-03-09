@@ -13,7 +13,7 @@ const port = process.env.PORT || 5000;
 
 const DataController = require('./data/data-controller.js');
 
-const dataController = new DataController('./data/webinars-db.json');
+const dataController = new DataController('./server/data/webinars-db.json');
 
 server.listen(port, (err) => {
   if (err) {

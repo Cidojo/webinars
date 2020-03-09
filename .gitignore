@@ -8,10 +8,5 @@ Thumbs.db
 *.log*
 node_modules/
 
-_configs/
-
-#public/bundle.js
-#public/bundle.js.map
-
 yarn.lock
 package-lock.json
