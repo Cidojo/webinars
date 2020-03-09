@@ -11,6 +11,7 @@ import {Hero} from './../parts/hero.jsx';
 import {Pagination} from './../parts/pagination.jsx';
 import withActiveItem from './../../hocs/with-active-item/with-active-item.jsx';
 import withFormData from './../../hocs/with-form-data/with-form-data.jsx';
+import withPolyfills from './../../hocs/with-polyfills/with-polyfills.jsx';
 import Selectors from './../../selectors/selectors.js';
 import {GRID_LAYOUT} from './../../constants/constants';
 
@@ -97,7 +98,7 @@ HomePage.defaultProps = {
   webinars: []
 };
 
-const HomePageWrapped = withActiveItem(HomePage);
+const HomePageWrapped = withPolyfills(withActiveItem(HomePage));
 
 const mapStateToProps = (state, ownProps) => {
   return Object.assign({}, ownProps, {

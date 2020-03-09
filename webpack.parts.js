@@ -8,7 +8,6 @@ const sharedCSSLoaders = [
   {
     loader: 'css-loader',
     options: {
-      // localIdentName: '[hash:base64:5]',
       importLoaders: 1,
       sourceMap: true
     }
@@ -35,11 +34,26 @@ exports.loadHtml = () => ({
   }
 });
 
+exports.lintJS = ({ include, exclude, options }) => ({
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        include,
+        exclude,
+        enforce: 'pre',
+        loader: 'eslint-loader',
+        options
+      }
+    ]
+  }
+});
+
 exports.loadJS = ({ include, exclude, options } = {}) => ({
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
 
         include,
         exclude: /node_modules/,

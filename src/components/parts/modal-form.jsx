@@ -31,17 +31,35 @@ const ModalForm = (props) => {
     onDescriptionInput(e.currentTarget.value)
   };
 
+  const saveFile = (file) => {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      imgRef.current && imgRef.current.setAttribute('src', e.currentTarget.result);
+      onFileUpload(file);
+    };
+    reader.readAsDataURL(file);
+  };
+
   const handleImageUpload = () => {
     const input = fileInputRef.current;
 
-    if (input && input.files && input.files[0]) {
-      const reader = new FileReader();
+    if (input && input.files.length) {
+      saveFile(input.files[0]);
+    }
+  };
 
-      reader.onload = function (e) {
-        imgRef.current && imgRef.current.setAttribute('src', e.currentTarget.result);
-        onFileUpload(input.files[0]);
-      };
-      reader.readAsDataURL(input.files[0]);
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    e.currentTarget.classList.remove(ClassNames.HIGHLIGHT);
+
+    const dt = e.dataTransfer;
+    const files = dt.files;
+
+    if (files && files.length) {
+      saveFile(files[0]);
     }
   };
 
@@ -66,23 +84,9 @@ const ModalForm = (props) => {
     e.currentTarget.classList.remove(ClassNames.HIGHLIGHT);
   };
 
-  const handleDrop = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    e.currentTarget.classList.remove(ClassNames.HIGHLIGHT);
-
-    const dt = e.dataTransfer;
-    const files = dt.files;
-
-    const input = fileInputRef.current;
-    input.files = files;
-
-    handleImageUpload();
-  };
-
   const handleRemoveImg = () => {
     fileInputRef.current.value = '';
+    imgRef.current && imgRef.current.removeAttribute('src');
     onFileUpload(null);
   };
 

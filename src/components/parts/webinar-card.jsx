@@ -10,7 +10,7 @@ const WebinarCard = (props) => {
     >
       <Link to={`/webinars/${webinar.id}`}>
         <div className='tile__img-wrp'>
-          <img src={webinar.imgSrc} alt={webinar.imgDescription} />
+          <img src={`/${webinar.imgSrc}`} alt={webinar.imgDescription} />
         </div>
         <div className='tile__content'>
           <h3>{webinar.title}</h3>

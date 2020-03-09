@@ -1,5 +1,5 @@
 $tile-spacing: 40px;
-$tiles-in-row: 3;
+$tiles-in-row: 3.01;
 
 .tiles {
 }
@@ -11,6 +11,11 @@ $tiles-in-row: 3;
   flex-wrap: wrap;
   justify-content: flex-start;
   padding: 50px 73px 20px;
+
+  > h1 {
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .tile {
@@ -18,6 +23,26 @@ $tiles-in-row: 3;
   width: calc(100% / #{$tiles-in-row} - #{$tile-spacing});
   margin: $tile-spacing / 2;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+
+  &.single {
+    width: 100%;
+
+    .tile__img-wrp {
+      height: 600px;
+
+      img {
+        @include object-fit(cover, center);
+      }
+    }
+
+    &:hover,
+    &:focus {
+      cursor: none;
+      box-shadow: 0 0 0 1px #000;
+    }
+
+    box-shadow: 0 0 0 1px #000;
+  }
 
   &[class*="col-8"] {
     display: flex;
@@ -71,10 +96,7 @@ $tiles-in-row: 3;
   overflow: hidden;
 
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    @include object-fit(cover, center);
   }
 }
 
@@ -108,7 +130,7 @@ $tiles-in-row: 3;
 }
 
 @include breakpoint(('large', 'down')) {
-  $tiles-in-row: 2;
+  $tiles-in-row: 2.01;
 
   .tile {
     width: calc(100% / #{$tiles-in-row} - #{$tile-spacing});
