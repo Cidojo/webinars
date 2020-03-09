@@ -1,13 +1,14 @@
 module.exports = {
   plugins: [
     '@babel/plugin-transform-typeof-symbol',
-    '@babel/plugin-syntax-dynamic-import',
+    '@babel/plugin-syntax-dynamic-import'
   ],
   presets: [
     `@babel/preset-react`,
     [`@babel/preset-env`, {
+      modules: false,
       targets: {
-        node: `current`
+        browsers: ['last 2 versions', 'ie >= 11']
       }
     }]
   ],
