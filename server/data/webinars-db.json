@@ -5,8 +5,7 @@
     "description": "Having an SSL certificate does not mean you have a secure website, and with the new European GDPR regulations",
     "imgSrc": "assets/img/web-1.jpg",
     "imgDescription": "web-1",
-    "tag": "",
-    "grid": 1
+    "tag": ""
   },
   {
     "id": 2,
@@ -14,8 +13,7 @@
     "description": "In this blog post, I share how to use three easily obtainable PPC reports to help improve your organic search performance.",
     "imgSrc": "assets/img/web-2.jpg",
     "imgDescription": "web-2",
-    "tag": "",
-    "grid": 1
+    "tag": ""
   },
   {
     "id": 3,
@@ -23,8 +21,7 @@
     "description": "Learn more about SEMrush",
     "imgSrc": "assets/img/web-3.jpg",
     "imgDescription": "web-3",
-    "tag": "advanced",
-    "grid": 1
+    "tag": "advanced"
   },
   {
     "id": 4,
@@ -32,8 +29,7 @@
     "description": "In this blog post, I share how to use three easily obtainable PPC reports to help improve your organic search performance.",
     "imgSrc": "assets/img/web-4.jpg",
     "imgDescription": "web-4",
-    "tag": "",
-    "grid": 1
+    "tag": ""
   },
   {
     "id": 5,
@@ -41,8 +37,7 @@
     "description": "I help out on the GMB forum and see lots of people claiming to have fake reviews on a daily basis.",
     "imgSrc": "assets/img/web-5.jpg",
     "imgDescription": "web-5",
-    "tag": "advanced",
-    "grid": 2
+    "tag": "advanced"
   },
   {
     "id": 6,
@@ -50,8 +45,7 @@
     "description": "Having an SSL certificate does not mean you have a secure website, and with the new European GDPR regulations",
     "imgSrc": "assets/img/web-6.jpg",
     "imgDescription": "web-6",
-    "tag": "basic",
-    "grid": 1
+    "tag": "basic"
   },
   {
     "id": 7,
@@ -59,8 +53,7 @@
     "description": "In this blog post, I share how to use three easily obtainable PPC reports to help improve your organic search performance.",
     "imgSrc": "assets/img/web-7.jpg",
     "imgDescription": "web-7",
-    "tag": "",
-    "grid": 1
+    "tag": ""
   },
   {
     "id": 8,
@@ -68,7 +61,38 @@
     "description": "Learn more about SEMrush",
     "imgSrc": "assets/img/web-8.jpg",
     "imgDescription": "web-8",
-    "tag": "",
-    "grid": 1
+    "tag": ""
+  },
+  {
+    "id": 9,
+    "title": "The ABC‘s of Online Reviews: Myths, Facts, and Review Removal",
+    "description": "I help out on the GMB forum and see lots of people claiming to have fake reviews on a daily basis.",
+    "imgSrc": "assets/img/web-5.jpg",
+    "imgDescription": "web-5",
+    "tag": "advanced"
+  },
+  {
+    "id": 10,
+    "title": "HTTPS & SSL Does Not Mean You Have a Secure Website",
+    "description": "Having an SSL certificate does not mean you have a secure website, and with the new European GDPR regulations",
+    "imgSrc": "assets/img/web-6.jpg",
+    "imgDescription": "web-6",
+    "tag": "basic"
+  },
+  {
+    "id": 11,
+    "title": "SEMrush 101",
+    "description": "In this blog post, I share how to use three easily obtainable PPC reports to help improve your organic search performance.",
+    "imgSrc": "assets/img/web-7.jpg",
+    "imgDescription": "web-7",
+    "tag": ""
+  },
+  {
+    "id": 12,
+    "title": "SEMrush Real-Time Site Analysis of VisionDirect",
+    "description": "Learn more about SEMrush",
+    "imgSrc": "assets/img/web-8.jpg",
+    "imgDescription": "web-8",
+    "tag": ""
   }
 ]

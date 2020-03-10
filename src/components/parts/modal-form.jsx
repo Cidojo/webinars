@@ -127,7 +127,7 @@ const ModalForm = (props) => {
                 name='form-add__file'
                 onChange={handleImageUpload}
                 ref={fileInputRef}
-                required
+                required={!hasFile}
               />
               <small>
                 <svg className='icon'>
