@@ -23,6 +23,9 @@ $tiles-in-row: 3.01;
   width: calc(100% / #{$tiles-in-row} - #{$tile-spacing});
   margin: $tile-spacing / 2;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  overflow: hidden;
 
   &.single {
     width: 100%;
@@ -50,6 +53,7 @@ $tiles-in-row: 3.01;
     width: calc(2 * 100% / #{$tiles-in-row} - #{$tile-spacing});
     min-height: 392px;
     padding-top: 65px;
+    border-radius: 0;
 
     .tile__img-wrp {
       z-index: -1;
